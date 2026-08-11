@@ -86,3 +86,29 @@
     });
   });
 })();
+
+/* ---------- Image sets: probe images/{prefix}-1..N.jpg, show what exists ---------- */
+(function () {
+  'use strict';
+  document.querySelectorAll('.img-set[data-img-set]').forEach(function (box) {
+    var prefix = box.dataset.imgSet;
+    var count = parseInt(box.dataset.imgCount || '6', 10);
+    var slot = box.querySelector('.media-slot');
+    var anyLoaded = false;
+    for (var i = 1; i <= count; i++) {
+      (function (i) {
+        var img = document.createElement('img');
+        img.className = 'set-img';
+        img.alt = prefix + ' ' + i;
+        img.loading = 'lazy';
+        img.src = 'images/' + prefix + '-' + i + '.jpg';
+        img.onload = function () {
+          if (!anyLoaded && slot) slot.style.display = 'none';
+          anyLoaded = true;
+        };
+        img.onerror = function () { img.remove(); };
+        box.appendChild(img);
+      })(i);
+    }
+  });
+})();

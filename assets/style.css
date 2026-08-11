@@ -284,3 +284,23 @@ footer .logo-slot { margin-bottom: 10px; font-family: 'Secular One', sans-serif;
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---------- Real images with graceful fallback ---------- */
+img.hero-photo, img.letter-photo { object-fit: cover; display: block; }
+.img-set {
+  display: flex; gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 0;
+  margin: 22px 0;
+}
+.img-set .set-img {
+  height: 320px; width: auto;
+  border-radius: 12px;
+  flex: none;
+  scroll-snap-align: center;
+}
+.img-set.chat-set .set-img { height: 260px; }
+.img-set .media-slot { flex: 1; margin: 0; }
+footer .logo-img { height: 34px; display: inline-block; margin-bottom: 10px; }
